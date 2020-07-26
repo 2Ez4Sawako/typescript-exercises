@@ -40,6 +40,10 @@ interface Admin {
 
 type Person = User | Admin;
 
+function isAdmin (person: Person): person is Admin {
+    return 'role' in person;
+}
+
 const persons: Person[] = [
     {
         name: 'Max Mustermann',
@@ -65,7 +69,7 @@ const persons: Person[] = [
 
 function logPerson(person: Person) {
     let additionalInformation: string;
-    if (person.role) {
+    if (isAdmin(person)) {
         additionalInformation = person.role;
     } else {
         additionalInformation = person.occupation;

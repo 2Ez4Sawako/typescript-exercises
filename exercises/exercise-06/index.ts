@@ -88,7 +88,9 @@ const users: User[] = [
     }
 ];
 
-function swap(v1, v2) {
+type Person = User | Admin;
+
+function swap<T, W>(v1: T, v2: W): [W, T] {
     return [v2, v1];
 }
 

@@ -106,7 +106,6 @@ async function testUsersDatabase() {
     expect((await usersDatabase.find({_id: {$in: [0, 1, 2]}})).map(({_id}) => _id)).to.have.same.members([0, 2]);
     expect((await usersDatabase.find({age: {$in: [31, 99]}})).map(({_id}) => _id)).to.have.same.members([5, 8]);
 }
-
 async function testAdminsDatabase() {
     const adminsDatabase = new Database<Admin>(path.join(__dirname, 'admins.txt'), ['name', 'role']);
 

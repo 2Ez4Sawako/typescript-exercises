@@ -74,17 +74,17 @@ type AdminsApiResponse = (
     }
 );
 
-function requestAdmins(callback: (response: AdminsApiResponse) => void) {
+function requestAdmins(callback: (response: TApiResponse<Admin[]>) => void) {
     callback({
         status: 'success',
         data: admins
     });
 }
 
-type UsersApiResponse = (
+type TApiResponse<T> = (
     {
         status: 'success';
-        data: User[];
+        data: T;
     } |
     {
         status: 'error';
@@ -92,21 +92,21 @@ type UsersApiResponse = (
     }
 );
 
-function requestUsers(callback: (response: UsersApiResponse) => void) {
+function requestUsers(callback: (response: TApiResponse<User[]>) => void) {
     callback({
         status: 'success',
         data: users
     });
 }
 
-function requestCurrentServerTime(callback: (response: unknown) => void) {
+function requestCurrentServerTime(callback: (response: TApiResponse<number>) => void) {
     callback({
         status: 'success',
         data: Date.now()
     });
 }
 
-function requestCoffeeMachineQueueLength(callback: (response: unknown) => void) {
+function requestCoffeeMachineQueueLength(callback: (response: TApiResponse<never>) => void) {
     callback({
         status: 'error',
         error: 'Numeric value has exceeded Number.MAX_SAFE_INTEGER.'
